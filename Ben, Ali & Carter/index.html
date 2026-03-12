@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@3.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.x/dist/vuetify.min.js"></script>
+    <script src="app.js" defer></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+
+            <v-app>
+
+                <!-- Top navigation bar -->
+                <v-app-bar color="white">
+                    <v-app-bar-title justify="center" align="center">The Cultural Significance of Whales in Indigenous
+                        Communities</v-app-bar-title>
+                    <v-spacer></v-spacer>
+
+                    <!--Button at top right that explains the module, clicking it sets showHelp to true-->
+                    <v-btn icon @click="showHelp = true">
+                        <v-icon>mdi-help-circle-outline</v-icon>
+                    </v-btn>
+                </v-app-bar>
+
+
+                <v-main @click="findCoordinates">
+
+                    <v-container fluid>
+                        <v-card v-for="card in cards" :key="card.title" width="20%" height="60%"
+                            class="bg-blue-darken-4 pa-2" style="position: absolute; "
+                            :style="{left: card.x, top: card.y, zIndex: card.z}">
+
+                            <v-img :src="card.image" height="50%" cover></v-img>
+
+                            <v-card-actions>
+                                <v-btn @click="toggleOpenCloseCard">Learn More</v-btn>
+                            </v-card-actions>
+
+                            <v-card-title class="bg-white">
+                                {{card.title}}
+                            </v-card-title>
+
+
+                            <v-card-text class="bg-white">
+                                {{card.description}}
+                            </v-card-text>
+
+
+                        </v-card>
+
+
+
+                        <!-- DIALOG FOR ADDING CONTENT -->
+
+                        <v-dialog v-model="showDetails" >
+                            <v-card >
+                                <v-card-title>My title</v-card-title>
+                                <v-card-text>
+                                    Some content!
+                                </v-card-text>
+                                <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn variant="text" @click="showDetails = false">
+                                        Close
+                                    </v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </v-dialog>
+
+                    </v-container>
+                </v-main>
+                <v-footer>
+                    <v-row justify="center" style="margin-top: 30%">
+                        <v-col cols="6">
+                            <v-slider v-model="frontIndex" @click="translateCards" :min="0" :max="cards.length - 1"
+                                step="1" thumb-label="always"></v-slider>
+                        </v-col>
+                    </v-row>
+                </v-footer>
+            </v-app>
+    </div>
+
+</body>
+
+</html>

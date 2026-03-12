@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.x/dist/vuetify.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.x/dist/vuetify.min.js"></script>
+  <script src="app.js" defer></script>
+  <!-- <script src="stepper-app.js" defer></script> -->
+</head>
+
+<body>
+
+  <div id="app">
+    <v-app>
+      <!-- This inserts a bar at the top of the page and alters colour, title, and text details -->
+      <v-app-bar color="indigo-darken-1">
+        <v-app-bar-title class="text-center font-weight-bold">
+          Ocean Commotion </v-app-bar-title>
+        <!-- These menu buttons will take users to other components and app pages -->
+        <v-menu>
+        <!-- This code takes the menu's trigger - positioned click - as a variable - props - and applies it to the buttons of the menu in a suscinct line -->
+          <template v-slot:activator="{ props }">
+            <!-- This line input the menu buttons and applies the props variable-->
+            <v-btn icon="mdi-dots-vertical" variant="text" v-bind="props"></v-btn>
+          </template>
+          <v-list>
+            <!-- This section applies the titles to the stepper items-->
+            <v-list-item v-for="(item, i) in items" :key="i" :value="i">
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-app-bar>
+ 
+      <v-main>
+        <v-container>
+          <!-- initial/home screen, recalls variables from app.js -->           
+          <v-card v-if="showHomepage">
+            </v-card-title>
+            <v-card-text class="text-center">
+              {{ description }} </v-card-text>
+            <v-img :src="homeImage"> </v-img>
+              <!-- This footer includes a botton to bring user to the stepper page and alter colour, button elements-->
+            <v-footer color="indigo-darken-1">
+              <v-btn size="x-large" rounded="xl" @click="toggleHomepage">
+                {{button}}
+                <span class="text-left"></span>
+              </v-btn>
+            </v-footer>
+          </v-card>
+
+          <!--stepper, recalls stages from app.js and other variables (images, title, etc)  -->
+          <v-stepper alt-labels :items="stages" class="bg-blue-accent-1 elevation-12" v-if="showStepper">
+
+            <template v-for="(stage, index) in stages" :key="stage.title" v-slot:[step(index)]>
+              <!-- This block determines details of stepper cards, recalls titles and descriptions-->
+              <v-card>              
+                <v-img :src="stage.stepperImage"></v-img>
+                <v-card-title> {{ stage.title }} </v-card-title>
+                <v-card-text> {{ stage.description }} </v-card-text>
+              </v-card>
+            </template>
+            <!-- (Next steps: The "next" buttons will be changed to align better with the story of the component, eg."Launch the cargo ship" using v-btn and next-text) -->
+          </v-stepper>
+        </v-container>
+        <v-footer color="indigo-darken-1" height="90">
+        </v-footer>
+      </v-main>
+    </v-app>
+  </div>
+
+</body>
+
+</html>

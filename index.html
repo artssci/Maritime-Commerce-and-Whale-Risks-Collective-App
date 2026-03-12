@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@3.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.x/dist/vuetify.min.js"></script>
+    <script src="app.js" defer></script>
+
+    <title>Maritime Commerce and Whale Risks Collective App</title>
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+
+            <v-app-bar class="bg-blue">
+                <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
+                <v-app-bar-title>
+                    Maritime Commerce and Whale Risks Collective App
+                </v-app-bar-title>
+            </v-app-bar>
+
+            <v-navigation-drawer v-model="openDrawer" class="bg-blue mt-4">
+                <!-- <v-list-item title="Select a Module"></v-list-item> -->
+                <!-- <v-divider></v-divider> -->
+                <v-list-item v-for="module in modules" :key="module.title" :href="module.url">
+                    {{module.title}}
+                </v-list-item>
+
+            </v-navigation-drawer>
+
+
+            <v-main class="bg-light-blue-darken-4">
+
+
+
+                <v-container fluid class="bg-light-blue-darken-4">
+                    <!-- left side carrousel -->
+                    <v-sheet class="d-flex ga-6 pa-6">
+                        <v-carousel>
+                            <v-carousel-item class="pa-10" v-for="module in modules" :key="module.title" :src="module.image"
+                                 ></v-carousel-item>
+                        </v-carousel>
+                        <!-- Project and Brief Modules description  -->
+
+                        <v-card class="bg-blue rounded-0">
+                            <v-card-title>About</v-card-title>
+
+                            <v-card-text>This is a collective app about Global Maratime Commerce and Whale Risks. This
+                                app
+                                hosts
+                                the following 7 modules:</v-card-text>
+                            <v-card-text>Temporal Tides: </v-card-text>
+                            <v-card-text>Ocean Commotion: </v-card-text>
+                            <v-card-text>Indigenous Perspectives in Reducing Whale Harm in Shipping Practice:
+                            </v-card-text>
+                            <v-card-text>Dive into the world of whales!: </v-card-text>
+                            <v-card-text>Jeopardy: Whale Health: </v-card-text>
+                            <v-card-text>Module 6: </v-card-text>
+                            <v-card-text>Module 7: </v-card-text>
+
+                        </v-card>
+
+                    </v-sheet>
+                </v-container>
+            </v-main>
+
+            <v-footer class="bg-blue">
+                Created by ARTSSCI-3c03 students in Winter 2026.
+            </v-footer>
+
+        </v-app>
+    </div>
+</body>
+
+</html>
