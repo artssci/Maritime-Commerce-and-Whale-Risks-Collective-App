@@ -25,12 +25,16 @@
             </v-app-bar>
 
             <v-navigation-drawer v-model="openDrawer" class="bg-blue mt-4">
-                <!-- <v-list-item title="Select a Module"></v-list-item> -->
-                <!-- <v-divider></v-divider> -->
-                <v-list-item v-for="module in modules" :key="module.title" :href="module.url">
-                    {{module.title}}
-                </v-list-item>
-
+                <v-list density="compact">
+                    <template v-for="(module, index) in modules" :key="index">
+                        <!-- <v-list-subheader>
+                            {{ module.category }}
+                        </v-list-subheader> -->
+                        <v-list-item :href="module.url">
+                            {{module.title}}
+                        </v-list-item>
+                    </template>
+                </v-list>
             </v-navigation-drawer>
 
 
@@ -42,8 +46,8 @@
                     <!-- left side carrousel -->
                     <v-sheet class="d-flex ga-6 pa-6">
                         <v-carousel>
-                            <v-carousel-item class="pa-10" v-for="module in modules" :key="module.title" :src="module.image"
-                                 ></v-carousel-item>
+                            <v-carousel-item class="pa-10" v-for="module in modules" :key="module.title"
+                                :src="module.image"></v-carousel-item>
                         </v-carousel>
                         <!-- Project and Brief Modules description  -->
 
