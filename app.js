@@ -50,7 +50,7 @@ const App = {
       },
       {
         title: "Dive into the world of whales!",
-        url: "Safiya, Ava & Naila/index.html",
+        url: "https://safiya-fs.github.io/Whale-Anatomy-Module/",
         category: "Whale Anatomy, Maritime Threats, and Traditional Ecological Knowledge ",
         image: "images/diveIntoTheWorlOfWhales.png"
       },
