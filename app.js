@@ -17,49 +17,49 @@ const App = {
 
 
     const modules = [
-      // {
-      //   title: "",
-      //   category: "General Overview",
-      //   url: "",
-      //   image: ""
+      {
+        title: "Ocean Route Explorer",
+        category: "General Overview",
+        url: "https://ameliag116.github.io/Ocean-Route-Explorer/",
+        image: ""
 
-      // },
+      },
       {
         title: "Temporal Tides",
-        url: "Nimrat, Omaimah & Kareena/index.html",
+        url: "https://nkkkkkkkkkkk.github.io/Temporal-Tides/",
         category: "Human versus Whale Time",
         image: "images/temporalTides.png"
       },
       {
         title: "Ocean Commotion",
-        url: "Erin, Hannah & Madeline/index.html",
+        url: "https://madsb04.github.io/Ocean-Commotion-/",
         category: "The Anthropocene and Consumer Culture",
         image: "images/oceanCommotion.png"
       },
       {
         title: "Jeopardy: Whale Health",
         category: "Integrated Cognitive Framework  ",
-        url: "Rowan, Anh, and Jing Yi/ModuleJeopardy.html",
+        url: "https://roco100.github.io/3C03-Assignment/",
         image: "images/WhaleJeopardy.png"
       },
       {
         title: "Indigenous Perspectives in Reducing Whale Harm in Shipping Practice",
-        url: "Claire & Geneva/index.html",
+        url: "https://genevawhite.github.io/genevacoding/",
         category: "Indigenous Perspectives in Canada",
         image: "images/indigenousPerspectives.png"
       },
       {
         title: "Dive into the world of whales!",
         url: "Safiya, Ava & Naila/index.html",
-        category: "Traditional Ecological Knowledge ",
+        category: "Whale Anatomy, Maritime Threats, and Traditional Ecological Knowledge ",
         image: "images/diveIntoTheWorlOfWhales.png"
       },
       
 
       {
-        title: "",
+        title: "Relationships Between Traditional and Western Ecological Knowledge in Whale Protection Practices",
         category: "Traditional Ecological Knowledge ",
-        url: "", 
+        url: "https://alipanju12.github.io/Relationships-Between-Western-and-TEK-respect-to-Whales/", 
         image: ""
       }
     ]
