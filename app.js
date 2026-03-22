@@ -6,7 +6,7 @@ const vuetify = createVuetify();
 const App = {
   setup() {
 
-    const openDrawer = ref(false)
+    const openDrawer = ref(true)
     function toggleDrawer() {
       if (openDrawer.value == false) {
         openDrawer.value = true
@@ -21,7 +21,7 @@ const App = {
         title: "Ocean Route Explorer",
         category: "General Overview",
         url: "https://ameliag116.github.io/Ocean-Route-Explorer/",
-        image: ""
+        image: "images/oceanRouteExplorer.png"
 
       },
       {
@@ -47,20 +47,20 @@ const App = {
         url: "https://genevawhite.github.io/genevacoding/",
         category: "Indigenous Perspectives in Canada",
         image: "images/indigenousPerspectives.png"
-      },
-      {
-        title: "Dive into the world of whales!",
-        url: "https://safiya-fs.github.io/Whale-Anatomy-Module/",
-        category: "Whale Anatomy, Maritime Threats, and Traditional Ecological Knowledge ",
-        image: "images/diveIntoTheWorlOfWhales.png"
-      },
-      
+      },        
 
       {
         title: "Relationships Between Traditional and Western Ecological Knowledge in Whale Protection Practices",
         category: "Traditional Ecological Knowledge ",
         url: "https://alipanju12.github.io/Relationships-Between-Western-and-TEK-respect-to-Whales/", 
         image: ""
+      }, 
+
+         {
+        title: "Whale Anatomy, Maritime Threats, and Traditional Ecological Knowledge",
+        url: "https://safiya-fs.github.io/Whale-Anatomy-Module/",
+        category: "Whale Anatomy, Maritime Threats, and Traditional Ecological Knowledge ",
+        image: "images/diveIntoTheWorlOfWhales.png"
       }
     ]
 

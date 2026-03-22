@@ -39,54 +39,111 @@
             <v-navigation-drawer v-model="openDrawer" color="#4E8D9C">
                 <v-list density="compact">
                     <template v-for="(module, index) in modules" :key="index">
-                        <!-- <v-list-subheader>
-                            {{ module.category }}
-                        </v-list-subheader> -->
                         <v-list-item :href="module.url">
                             {{module.title}}
                         </v-list-item>
+                        <v-divider></v-divider>
                     </template>
                 </v-list>
             </v-navigation-drawer>
 
 
-            <v-main color="#4E8D9C">
+            <v-main style="background: #281C59">
 
 
 
-                <v-container fluid style="background: #281C59">
+                <v-container fluid>
                     <!-- left side carrousel -->
-                    <v-sheet color="#EDF7BD" class="d-flex ga-6 pa-6">
-                        <v-carousel>
-                            <v-carousel-item class="pa-10" v-for="module in modules" :key="module.title"
-                                :src="module.image"></v-carousel-item>
-                        </v-carousel>
-                        <!-- Project and Brief Modules description  -->
+                    <v-sheet color="#EDF7BD" class="pa-4 pa-md-6">
+                        <v-row>
+                            <v-col cols="12" md="7">
+                                <v-carousel hide-delimiter-background show-arrows="hover">
+                                    <v-carousel-item class="pa-10" v-for="module in modules" :key="module.title"
+                                        :src="module.image"></v-carousel-item>
+                                </v-carousel>
+                                <!-- Project and Brief Modules description  -->
+                            </v-col>
 
-                        <v-card color="#281C59" class="rounded-0">
-                            <v-card-title>About</v-card-title>
+                            <v-col cols="12" md="5">
+                                <v-card color="#281C59">
+                                    <v-stepper :items="['About', 'Modules']" bg-color="transparent" flat>
 
-                            <v-card-text>This is a collective app about Global Maratime Commerce and Whale Risks. This
-                                app
-                                hosts
-                                the following 7 modules:</v-card-text>
-                            <v-card-text>Temporal Tides: </v-card-text>
-                            <v-card-text>Ocean Commotion: </v-card-text>
-                            <v-card-text>Indigenous Perspectives in Reducing Whale Harm in Shipping Practice:
-                            </v-card-text>
-                            <v-card-text>Dive into the world of whales!: </v-card-text>
-                            <v-card-text>Jeopardy: Whale Health: </v-card-text>
-                            <v-card-text>Module 6: </v-card-text>
-                            <v-card-text>Module 7: </v-card-text>
+                                        <template v-slot:item.1>
+                                            <v-card-title class="text-center pt-4">About the App</v-card-title>
+                                            <v-card-text class="text-body-1">
+                                                This collective app investigates the complex intersection of Global
+                                                Maritime Commerce and Whale Risks. By weaving together shipping data,
+                                                interactive case studies, and a comparative study of
+                                                Western and Indigenous Ecological Knowledge, this platform offers a
+                                                multifaceted view of ocean conservation. 
+                                                
+                                                <br><br>
+                                                Explore our seven student-led
+                                                modules to see how human industry and marine life cycles collide, and
+                                                what are some practices that can help navigate a safer future for our
+                                                oceans.
+                                            </v-card-text>
+                                            <v-card-text class="text-caption text-center text-grey-lighten-1">
+                                                Click "Next" to view the 7 project modules.
+                                            </v-card-text>
+                                        </template>
 
-                        </v-card>
+                                        <template v-slot:item.2>
+                                            <v-card-title class="text-center pt-4">Project Modules</v-card-title>
 
+
+                                            <v-card-text class="py-2">
+                                                <strong>Ocean Route Explorer:</strong> Introduces the relationship
+                                                between global shipping routes and whale migration patterns.
+                                            </v-card-text>
+                                            <v-divider class="mx-4"></v-divider>
+
+                                            <v-card-text class="py-2">
+                                                <strong>Temporal Tides:</strong> A card-matching game exploring
+                                                overlapping human and ecological timelines.
+                                            </v-card-text>
+                                            <v-divider class="mx-4"></v-divider>
+
+                                            <v-card-text class="py-2">
+                                                <strong>Ocean Commotion:</strong> Interactive simulation of maritime
+                                                noise and traffic.
+                                            </v-card-text>
+                                            <v-divider class="mx-4"></v-divider>
+
+                                            <v-card-text class="py-2">
+                                                <strong>Jeopardy: Whale Health:</strong> A game confronting the
+                                                dehumanization of humans and humanization of whales.
+                                            </v-card-text>
+                                            <v-divider class="mx-4"></v-divider>
+
+                                            <v-card-text class="py-2">
+                                                <strong>Indigenous Perspectives:</strong> Reducing whale harm
+                                                through traditional shipping practices.
+                                            </v-card-text>
+                                            <v-divider class="mx-4"></v-divider>
+
+                                            <v-card-text class="py-2">
+                                                <strong>Knowledge Systems:</strong> Relationships between
+                                                Traditional and Western Ecological Knowledge.
+                                            </v-card-text>
+                                            <v-divider class="mx-4"></v-divider>
+
+                                            <v-card-text class="py-2">
+                                                <strong>Whale Anatomy:</strong> Maritime threats and Traditional
+                                                Ecological Knowledge.
+                                            </v-card-text>
+                                        </template>
+
+                                    </v-stepper>
+                                </v-card>
+                            </v-col>
+                        </v-row>
                     </v-sheet>
                 </v-container>
             </v-main>
 
-            <v-footer app color="#4E8D9C" class="text-center">
-                Created by ARTSSCI3C03 students, Winter 2026.
+            <v-footer app color="#4E8D9C" class="d-flex">
+                <v-sheet color="transparent" class="ma-auto"> Created by ARTSSCI3C03 students, Winter 2026.</v-sheet>
             </v-footer>
 
         </v-app>
