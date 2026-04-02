@@ -57,7 +57,7 @@
                     <v-sheet color="#EDF7BD" class="pa-4 pa-md-6">
                         <v-row>
                             <v-col cols="12" md="7">
-                                <v-carousel hide-delimiter-background show-arrows="hover">
+                                <v-carousel cycle interval="3000" hide-delimiter-background show-arrows="hover">
                                     <v-carousel-item class="pa-10" v-for="module in modules" :key="module.title"
                                         :src="module.image"></v-carousel-item>
                                 </v-carousel>
@@ -75,13 +75,21 @@
                                                 Maritime Commerce and Whale Risks. By weaving together shipping data,
                                                 interactive case studies, and a comparative study of
                                                 Western and Indigenous Ecological Knowledge, this platform offers a
-                                                multifaceted view of ocean conservation. 
-                                                
-                                                <br><br>
-                                                Explore our seven student-led
-                                                modules to see how human industry and marine life cycles collide, and
-                                                what are some practices that can help navigate a safer future for our
-                                                oceans.
+                                                multifaceted view of ocean conservation.
+                                            </v-card-text>
+
+                                            <v-card-title> Instructions: </v-card-title>
+
+
+                                            <v-card-text class="text-body-1">
+                                                <ul>
+
+                                                    <li>Use the "Next" button below to browse each module, or</li>
+                                                    
+                                                    <li>Jump directly to a specific topic using the menu in the top-left
+                                                        corner</li>
+                                                </ul>
+
                                             </v-card-text>
                                             <v-card-text class="text-caption text-center text-grey-lighten-1">
                                                 Click "Next" to view the 7 project modules.
@@ -117,20 +125,26 @@
                                             <v-divider class="mx-4"></v-divider>
 
                                             <v-card-text class="py-2">
-                                                <strong>Indigenous Perspectives:</strong> Reducing whale harm
-                                                through traditional shipping practices.
+                                                <strong>Reducing whale harm
+                                                    through traditional shipping practices:</strong> This module
+                                                considers the unique sense of care and connection within Indigenous
+                                                perspectives to marine stewardship
                                             </v-card-text>
                                             <v-divider class="mx-4"></v-divider>
 
                                             <v-card-text class="py-2">
-                                                <strong>Knowledge Systems:</strong> Relationships between
-                                                Traditional and Western Ecological Knowledge.
+                                                <strong>Relationships between
+                                                    Traditional and Western Ecological Knowledge:</strong> Interactive
+                                                cards that
+                                                examine various case studies from a Traditional Ecological Knowledge
+                                                perspective.
                                             </v-card-text>
                                             <v-divider class="mx-4"></v-divider>
 
                                             <v-card-text class="py-2">
-                                                <strong>Whale Anatomy:</strong> Maritime threats and Traditional
-                                                Ecological Knowledge.
+                                                <strong>Whale Anatomy, Maritime threats and Traditional
+                                                    Ecological Knowledge:</strong> An interactive map of the whale
+                                                anatomy in connection to practices, and beliefs of Indigenous peoples.
                                             </v-card-text>
                                         </template>
 

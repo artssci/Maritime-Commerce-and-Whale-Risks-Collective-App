@@ -53,7 +53,7 @@ const App = {
         title: "Relationships Between Traditional and Western Ecological Knowledge in Whale Protection Practices",
         category: "Traditional Ecological Knowledge ",
         url: "https://alipanju12.github.io/Relationships-Between-Western-and-TEK-respect-to-Whales/", 
-        image: ""
+        image: "images/relationshipBetween.png"
       }, 
 
          {
