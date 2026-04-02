@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.x/dist/vuetify.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  body 
+  {
+  font-family: 'Poppins', sans-serif;
+  }
+   .custom-stepper {
+    background-color: rgb(133, 199, 154);
+  }
+   .v-card-text p 
+   {
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .v-expansion-panel-text p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  }
+  .app-background {
+  background-color: rgb(237, 247, 189);
+}
+.home-header {
+  background-color: rgb(40, 28, 89);
+  color: white;
+  font-weight: 600;
+}
+</style>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.x/dist/vuetify.min.js"></script>
+  <script src="app.js" defer></script>
+  <!-- <script src="stepper-app.js" defer></script> -->
+</head>
+
+<body>
+
+  <div id="app">
+    <v-app>
+      <!-- This inserts a bar at the top of the page and alters colour, title, and text details -->
+      <v-app-bar color="rgb(78, 141, 156)" height="90">
+         <v-menu>
+        <!-- This code takes the menu's trigger - positioned click - as a variable - props - and applies it to the buttons of the menu in a suscinct line -->
+          <template v-slot:activator="{ props }">
+            <!-- This line input the menu buttons and applies the props variable-->
+            <v-btn icon="mdi-menu" variant="text" v-bind="props"></v-btn>
+          </template>
+          <v-list>
+            <!-- This section applies the titles to the stepper items-->
+            <v-list-item v-for="(item, i) in items" :key="i" :href="item.link" target="_blank">
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-app-bar-title class="text-center font-weight-bold">
+          Ocean Commotion
+        </v-app-bar-title>
+        <!-- These menu buttons will take users to other components and app pages -->
+      </v-app-bar>
+ 
+      <v-main class="app-background">
+        <v-container>
+          <!-- initial/home screen, recalls variables from app.js -->           
+          <v-card v-if="showHomepage">
+          <v-card-title class="text-h5 text-center home-header">
+           Ocean Commotion  
+          </v-card-title>
+            <v-card-text class="text-center home-header">
+              {{ description }}
+            </v-card-text>
+             <v-expansion-panels>
+                  <v-expansion-panel>
+                    <v-expansion-panel-title>
+                      Sub-Theme & Critical Lens
+                    </v-expansion-panel-title>
+                    <v-expansion-panel-text>
+                      	<p></p>Anthropocene is the geological epoch we are currently in, characterized by significant human activity impacting Earth’s geology, natural cycles and ecosystems. This critical lens emphasizes how “sustainable ecologies” are often decentralized from our focus in favour of human values like wealth, efficiency and advancement (Heller, 2019). <p> </p>
+		                  
+                        <p></p>The Anthropocene lens highlights an interesting paradox: while humans’ general well-being is rising, our actions are pushing our planet toward a future void of natural biodiversity (Heller, 2019). Unfortunately, seemingly small “local actions” like driving to work or ordering a package online have become so normalized and interconnected that they actively contribute to “global risks and consequences” for our environment (Biermann et al., 2016). <p> </p>
+	
+                       <p></p> A large goal in the Anthropocene epoch is to “facilitate effective international communication” (Heller, 2019). On the surface, the goal seems positive, but viewed through the lens of the Anthropocene, it can have catastrophic environmental effects. The surge in international communication has contributed to the rapid expansion of e-commerce, which relies heavily on international supply chains, packaging materials, and ocean transportation; these factors significantly impact waste management and carbon emissions.<p></p>
+         
+                       <p></p>Almost no region is void of this expansive “international communication”; how might you be impacting this human-shaped epoch?<p></p>
+ 
+                      </v-expansion-panel-text>
+                  </v-expansion-panel>
+
+                  <v-expansion-panel>
+                    <v-expansion-panel-title>
+                     Instructions
+                    </v-expansion-panel-title>
+
+                    <v-expansion-panel-text>
+                      Hit "Begin" to start the activity! For each step, hit "Next" to be taken to the following stage, or "Previous" to return to the last one. In every step, read the text carefully, and reflect on how it may apply to your life, and how it challenges your current views. It is encouraged that you take your time and think critically as you read.
+                    </v-expansion-panel-text>
+                  </v-expansion-panel>
+                </v-expansion-panels>
+            
+            <v-img :src="homeImage"> </v-img>
+              <!-- This footer includes a botton to bring user to the stepper page and alter colour, button elements-->
+            <v-footer color="rgb(40, 28, 89)">
+              <v-btn size="x-large" rounded="xl" @click="toggleHomepage">
+                {{button}}
+                <span class="text-left"></span>
+              </v-btn>
+            </v-footer>
+         <v-expansion-panels>
+           <v-expansion-panel>
+                    <v-expansion-panel-title>
+                     References
+                    </v-expansion-panel-title>
+
+                    <v-expansion-panel-text>
+                      <p></p>Biermann, F., Bai, X., Bondre, N., Broadgate, W., Arthur Chen, C.-T., Dube, O. P., Erisman, J. W., Glaser, M., van der Hel, S., Lemos, M. C., Seitzinger, S., & Seto, K. C. (2016). Down to Earth: Contextualizing the Anthropocene. Global Environmental Change, 39(316), 341–350. https://doi.org/10.1016/j.gloenvcha.2015.11.004 <p></p>
+                    
+                      <p></p> CapitalOne Shipping Research. (2026). Amazon Logistics Statistics. https://capitaloneshopping.com/research/amazon-logistics-statistics/ <p></p>
+                    
+                      <p></p> Ellis, L. (2022, January 14). How Do Whales Change Climate? Earth.org. https://earth.org/how-do-whales-change-climate/ <p></p>
+
+                      <p></p>Heller, N. E. (2018). Sinking Chicago: Climate change and the remaking of a flood-prone environment. Environmental History, 24(3). https://doi.org/10.1093/envhis/emz017 <p></p>
+
+                     <p></p> IFAW. (2024, July 18). The impact of climate change on whales. https://www.ifaw.org/international/journal/impact-climate-change-whales <p></p>
+
+                     <p></p>IFAW. (2025, March 27). How whale poop and phytoplankton fight climate change. https://www.ifaw.org/ca-en/journal/whale-poop-phytoplankton-climate-change <p></p>
+
+                      <p></p>Ionescu, A. (2024, November 22). Ship routes overlap with 92% of whale habitats. Earth.com. https://www.earth.com/news/ship-routes-overlap-with-92-of-whale-habitats/ <p></p>
+
+                     <p></p> Lindsey, R. (2025, May 21). Climate change: Atmospheric carbon dioxide (J. Miller, Ed.). Climate.gov; National Oceanic and Atmospheric Administration. https://www.climate.gov/news-features/understanding-climate/climate-change-atmospheric-carbon-dioxide <p></p>
+
+                      <p></p>NASA. (2026, January). Carbon dioxide – Earth indicator. NASA Science. https://science.nasa.gov/earth/explore/earth-indicators/carbon-dioxide/ <p></p>
+
+                      <p></p>Nisi, A. C., Welch, H., Brodie, S., Leiphardt, C., Rhodes, R., Hazen, E. L., Redfern, J. V., Branch, T. A., Barreto, A. S., Calambokidis, J., Clavelle, T., Dares, L., Vos, A. de, Gero, S., Jackson, J. A., Kenney, R. D., Kroodsma, D., Leaper, R., McCauley, D. J., & Moore, S. E. (2024). Ship collision risk threatens whales across the world’s oceans. Science, 386(6724), 870–875. https://doi.org/10.1126/science.adp1950 <p></p>
+
+                      <p></p>Pershing, A. J., Christensen, L. B., Record, N. R., Sherwood, G. D., & Stetson, P. B. (n.d.). The impact of whaling on the Ocean Carbon Cycle: Why bigger was better. PLOS ONE. https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0012444 <p></p>   
+
+                      <p></p>PYMNTS (2021, December 5). Amazon Charters Private Cargo Vessels for Greater Supply Chain Control. PYMNTS. https://www.pymnts.com/amazon/2021/amazon-charters-private-cargo-vessels-greater-supply-chain-control/ <p></p>
+
+                      <p></p>ShipUniverse. (2025, January 29). Amazon’s growing fleet of cargo ships: Impact on global shipping. Shipuniverse.com. https://www.shipuniverse.com/news/amazons-growing-fleet-of-cargo-ships-impact-on-global-shipping/ <p></p>
+
+                      <p></p>Tarasov, K. (2021, December 4). Amazon is making its own containers and bypassing supply chain chaos with chartered ships and long-haul planes. CNBC; www.cnbc.com. https://www.cnbc.com/2021/12/04/how-amazon-beats-supply-chain-chaos-with-ships-and-long-haul-planes.html <p></p>
+
+                      <p></p>United Nations. (n.d.). Causes and effects of climate change. https://www.un.org/en/climatechange/science/causes-effects-climate-change <p></p>
+
+                     <p></p> Welch, C. (2021, April 15). The hidden world of whale culture. National Geographic. https://www.nationalgeographic.com/magazine/article/the-hidden-world-of-whale-culture-feature <p></p>
+                    </v-expansion-panel-text>
+                  </v-expansion-panel>
+          </v-expansion-panels>
+          </v-card>
+
+        
+          <!--stepper, recalls stages from app.js and other variables (images, title, etc)  -->
+          <v-stepper alt-labels v-model="currentStep" :items="stages" elevation="25" class="custom-stepper" color="rgb(40, 28, 89)" v-if="showStepper">
+            <template v-slot:actions="{ prev, next}">
+              
+              <v-row class="pa-4">
+
+                <v-btn v-if = "currentStep > 1" @click="prev" variant="text">
+                  Previous
+                </v-btn>
+
+                <v-spacer></v-spacer>
+
+                <v-btn @click="next">
+                  {{ chooseNextButtonLabel()}}
+                </v-btn>
+              </v-row>
+            </template>
+            
+            <template v-for="(stage, index) in stages" :key="stage.title" v-slot:[step(index)]>
+              <!-- This block determines details of stepper cards, recalls titles and descriptions-->
+              <v-card class="d-flex">              
+                <v-img :src="stage.stepperImage" height="500" width="50%"></v-img>
+                <v-sheet>
+                <v-card-title style="color: rgb(40, 28, 89); font-weight: 600;"> {{ stage.title }} </v-card-title>
+                <v-card-text> <p v-for="(para, i) in stage.description" :key="i">
+                  {{ para }}
+                 </p> </v-card-text>
+
+                 </v-sheet>
+              </v-card>
+            </template>
+            <!-- (Next steps: The "next" buttons will be changed to align better with the story of the component, eg."Launch the cargo ship" using v-btn and next-text) -->
+
+ <v-expansion-panels v-if="currentStep === 1">
+                  <v-expansion-panel>
+                    <v-expansion-panel-title>
+                      More Info
+                    </v-expansion-panel-title>
+                    <v-expansion-panel-text>
+                      <v-card v-for="(target, index) in packageGraph" :key="index" class="mb-4">
+                        <v-card-item>
+                          <v-card-title>{{ target.topic }}</v-card-title>
+                          <v-card-subtitle>{{ target.subtitle }}</v-card-subtitle>
+                          </v-card-item>
+                        <v-card-text>
+                         <!-- The sparkline inserts the line graph, and color, line width, etc. alter the aesthetic details of the graph-->
+                        <v-sparkline :model-value="target.trend" color="rgb(40, 28, 89)" :line-width="3" :padding="13" :height="100" :labels="['2023', '2024', '2025']" :label-size="8" auto-draw smooth>  </v-sparkline>
+                        </v-card-text>
+                      </v-card>        
+                    Amazon has been consistenly increasing its annual parcel deliveries. With main producer hubs located overseas, whale pods will be facing additinal threats as we continue to fill our waters with ocean freight (CapitalOne Shipping Research, 2026). 
+                      </v-expansion-panel-text>
+                  </v-expansion-panel>
+</v-expansion-panels>
+<v-expansion-panels v-if="currentStep === 2">
+                  <v-expansion-panel>
+                    <v-expansion-panel-title>
+                      More Info
+                    </v-expansion-panel-title>
+                    <!-- the <b> is for bold, and <br> is for line breaks-->
+                    <v-expansion-panel-text>
+                          - 90% of traded goods are transported by sea, and shipping happens across <b> 92% of whale habitats</b> (Nisi et al., 2024). <br>
+                          - Highest-risk areas: <b> Indian Ocean (21.6%)</b>, western north Pacific Ocean (14.5%), Mediterranean (13.3%) (Nisi et al., 2024). <br>
+                          - <b> Very very limited protections </b> for whales in hotspots: blue whales 0.54%, humpback whales 0.27%, fin and sperm whales 0% (Nisi et al., 2024).
+                     </v-expansion-panel-text>
+                  </v-expansion-panel>
+</v-expansion-panels>
+
+
+<v-expansion-panels v-if="currentStep === 3">
+                  <v-expansion-panel>
+                    <v-expansion-panel-title>
+                      More Info
+                    </v-expansion-panel-title>
+                    <!-- the <b> is for bold, and <br> is for line breaks-->
+                    <v-expansion-panel-text>
+                       - Whale's capacity to store carbon has reduced by <b> 9 million tonnes </b> due to commercial whaling (Pershing et al., n.d.). <br>
+                       - Estimated that increasing whale populations could remove 160000 tons of carbon annually via sinking whale carcasses (ie. whale fall) (Pershing et al., n.d.).  
+                      </v-expansion-panel-text>
+                  </v-expansion-panel>
+</v-expansion-panels>
+
+ <v-expansion-panels v-if="currentStep === 4">
+                  <v-expansion-panel>
+                    <v-expansion-panel-title>
+                      More Info
+                    </v-expansion-panel-title>
+                    <v-expansion-panel-text>
+                      <v-card v-for="(target, index) in carbonDioxideGraph" :key="index" class="mb-4">
+                        <v-card-item>
+                          <v-card-title>{{ target.topic }}</v-card-title>
+                          <v-card-subtitle>{{ target.subtitle }}</v-card-subtitle>
+                          </v-card-item>
+                          <!-- The sparkline inserts the line graph, and color, line width, etc. alter the aesthetic details of the graph-->
+                        <v-card-text>
+                        <v-sparkline :model-value="target.trend" color="rgb(40, 28, 89)" :line-width="3" :padding="13" :height="100" :labels="['1960', '1992', '2025']" :label-size="8" auto-draw smooth>  </v-sparkline>
+                        </v-card-text>
+                      </v-card>
+        
+                    Atmospheric carbon dioxide has been significantly increasing since industrialization. While there are countless factors adding to this pattern, cargo ships and decreasing whale populations are indeed contributors (Lindsey, 2025).  
+                      </v-expansion-panel-text>
+                  </v-expansion-panel>
+</v-expansion-panels>
+
+          </v-stepper>
+        </v-container>
+        <v-footer color="rgb(78, 141, 156)" height="90">
+        </v-footer>
+      </v-main>
+    </v-app>
+  </div>
+
+</body>
+
+</html>

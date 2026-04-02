@@ -1,0 +1,328 @@
+<!--This section sets up the webpage and loads the external libraries needed
+for the application to run.-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indigenous Perspectives in Reducing Whale Harm in Shipping Practice</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.x/dist/vuetify.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css" rel="stylesheet" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.x/dist/vuetify.min.js"></script>
+  <style>
+    body { 
+    font-family: 'Poppins', sans-serif !important;	 
+    } 
+
+    .backgroundMap {
+      width: 100% !important;
+      height: 1000px;
+      max-width: none !important;
+      cursor: crosshair !important;
+      background-color: red;
+    }
+
+    .backgroundMap img {
+      width: 100% !important;
+      height: 1000px;
+      max-width: none !important;
+      cursor: crosshair !important;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <v-app>
+      <v-main class="pa-6" style="background-color:#4E8D9C">
+        <v-container style="position: relative;">
+<!--This creates the workable navigation bar that connects to other class modules -->
+          <v-navigation-drawer v-model="openDrawer" color="#4E8D9C">
+            <v-list-item v-for="item in projects" :key="item.title" :href="item.url">
+             {{ item.title }}
+            </v-list-item>
+          </v-navigation-drawer>
+
+          <v-app-bar color="#4E8D9C">
+            <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
+             <v-app-bar-title>Indigenous Perspectives in Reducing Whale Harm in Shipping Practice</v-app-bar-title>
+          </v-app-bar>
+
+          <v-img src="images/updatemap.png" @click="findCoordinates"></v-img>
+
+          <!-- Toggle Button - This allows us to create 5 toggle buttons in the app, each linked to their own reference card -->
+          <v-sheet v-for="item in collection" :key="item.name">
+            <v-btn icon="mdi-map-marker" style="position:absolute; z-index:1;"
+              :style="{left:item.left, top: item.top}" color="#281C59"
+              @click="toggleOpenCloseReferenceCard(item)">
+            </v-btn>
+
+            <!-- Reference Card (shows/hides using v-if) - This allows us to have 5 refrence cards in the app, one for each button -->
+            <v-dialog v-model="item.showReferenceCard.value">
+
+              <v-card class="d-flex flex-row" color="#EDF7BD">
+                <v-img :src="item.image" width="50%"></v-img>
+                <!-- v-sheet works as a container so title and text stay on the right together -->
+                <v-sheet color="#EDF7BD">
+                  <v-card-title>
+                    <div>
+                      <p class="font-weight-bold">{{ item.location }}</p>
+                    </div>
+                  </v-card-title>
+
+
+                  <v-card-text>
+                    <!--Text within the refrence card, showing details about the Indigenous group, the issue they face in shipping practices threatening whales in the area, and their method of resistance.-->
+                    <div><strong>The Issue:</strong></div>
+                     {{ item.issueText }}
+                  </v-card-text>
+
+                  <v-card-text>
+                   <div><strong>The Response: {{ item.response }}</strong></div>
+                    {{item.responseText}}
+                  </v-card-text>
+
+          
+                  <v-card-text>
+                   <div><strong>Cultural Significance:</strong> {{ item.method }}</div>
+                   {{item.cultureText}}
+                  </v-card-text>
+
+            
+                  <!-- This makes clickable references for each card for easy user navigation and learning-->
+                  <v-card-text color="#EDF7BD">
+                    <div><strong>References:</strong></div>
+                    {{ item.reference1 }}
+                    <a :href="item.reference1Link" target="_blank"> {{item.reference1Link}}</a>
+                  </v-card-text>
+                    <v-card-text>
+                      {{ item.reference1 }}
+                    <a :href="item.reference1Link" target="_blank"> {{item.reference1Link}}</a>
+                    </v-card-text>
+
+                    <v-card-text>
+                      {{ item.reference2 }}
+                    <a :href="item.reference2Link" target="_blank"> {{item.reference2Link}}</a>
+                    </v-card-text>
+
+                    <v-card-text>
+                      {{ item.reference3 }}
+                    <a :href="item.reference3Link" target="_blank"> {{item.reference3Link}}</a>
+                    </v-card-text>
+
+                  <v-card-actions>
+                    <v-btn class="mx-auto" @click="toggleOpenCloseReferenceCard(item)">close</v-btn>
+                  </v-card-actions>
+                </v-sheet>
+              </v-card>
+            </v-dialog>
+
+            <!--Automatic popup card about that displays the modules theme and instructions-->
+            <v-dialog v-model="dialog" width="1100">
+              <v-card color="#EDF7BD">
+                <v-card-title>
+                  <div>
+                    <p class="font-weight-bold text-h5">Welcome to Indigenous Perspectives in Reducing Whale Harm in Shipping Practice</p>
+                  </div>
+                </v-card-title>
+
+                <v-card-text>
+                  <div><strong>Theme:</strong></div>
+                  Within the overall theme of preventing whale harm in shipping practice, this module considers the unique sense of care and connection within Indigenous perspectives to marine stewardship. Specifically, many Indigenous communities understand the sea and its creatures as a sacred resource of food and spiritual sustenance. This perception of the ocean as a provider does not come from economic extraction, but rather a deep reciprocity. In Indigenous philosophy, if one cares for the ocean, the ocean will take care of them. In this way, Indigenous perspectives and ways of knowing foster approaches that prioritize relational care for marine ecosystems and their creatures. 
+                </v-card-text>
+
+                <v-card-text>
+                  <div><strong>Module Instructions:</strong></div>
+                  In this module, you will engage with various Indigenous communities along Canada’s coasts and learn more about their unique connection to whales and the shipping routes that threaten them.
+                  <v-list-item>
+                    1. <strong>Click</strong> around the 5 highlighted locations of First Nation and Inuit communities. 
+                  </v-list-item>
+                  <v-list-item>
+                    2. <strong>Read</strong> about the shipping practices that risk whale health across Canada’s coasts. 
+                  </v-list-item>
+                  <v-list-item>
+                    3. <strong>Learn</strong> about the Indigenous traditional knowledge and collaborative efforts that work to protect whales in these areas. 
+                  </v-list-item>
+                  <v-list-item>
+                    4. <strong>Consider</strong> the connection to Indigenous culture that informs these practices.
+                  </v-list-item>
+                  <v-list-item>
+                    5. <strong>Explore</strong> the sources provided in each card as well as the ‘Learn More Here’ section to meaningfully engage with the Indigenous research and advocacy programs that work to reduce whale harm in shipping practices! 
+                  </v-list-item>
+
+                </v-card-text>
+
+                <!--This adds a way to exit the dialoge, and confirm the user knows how to move around the module!-->
+                <v-card-actions>
+                  <v-btn @click="dialog = false">
+                    Got it
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+
+          </v-sheet>
+
+          <!--This creates the 'Learn More Here' button that displays a card with further information and links to sources-->
+          <v-btn color="#281C59" style="position:absolute; left:5%; top:20%; z-index:10"
+            @click="toggleClickHere" width="180" height="40">
+            Learn More Here
+          </v-btn>
+
+          <!--This creates the card that will pop up with additional information and sources-->
+          <v-dialog v-model="clickHereDialog" width="500">
+            <v-card color="#EDF7BD">
+              <v-card-title>
+                <p class="font-weight-bold">Learn More Here</p>
+              </v-card-title>
+
+              <v-card-text>
+                Explore these additional sources for more information on the theme of this module and the importance of engaging with Indigenous perspectives. 
+              </v-card-text>
+
+              <v-list-item v-for="item in LearnMoreReferences" :key="item.location">
+                {{ item.reference }}
+                <a :href="item.referenceLink" target="_blank"> {{item.referenceLink}}</a>
+              </v-list-item>
+              
+                <v-card-actions>
+                  <v-btn @click="toggleClickHere">Close</v-btn>
+                </v-card-actions>
+
+            </v-card>
+          </v-dialog>
+
+          <!--This creates expansion panels at the bottom of the page that allow the user to refer back to the module theme and instructions.-->
+          <v-expansion-panels color="#EDF7BD">
+             <v-expansion-panel color="#EDF7BD">
+               <v-expansion-panel-title>
+                 Module Theme and Instructions
+                </v-expansion-panel-title>
+
+                <v-expansion-panel-text>
+                 <v-card-text>
+                   <div><strong>Theme:</strong></div>
+                    Within the overall theme of preventing whale harm in shipping practice, this module considers the unique sense of care and connection within Indigenous perspectives to marine stewardship. Specifically, many Indigenous communities understand the sea and its creatures as a sacred resource of food and spiritual sustenance. This perception of the ocean as a provider does not come from economic extraction, but rather a deep reciprocity. In Indigenous philosophy, if one cares for the ocean, the ocean will take care of them. In this way, Indigenous perspectives and ways of knowing foster approaches that prioritize relational care for marine ecosystems and their creatures. 
+                 </v-card-text>
+
+                <v-card-text>
+                  <div><strong>Module Instructions:</strong></div>
+                  In this module, you will engage with various Indigenous communities along Canada’s coasts and learn more about their unique connection to whales and the shipping routes that threaten them.
+                  <v-list-item>
+                    1. <strong>Click</strong> around the 5 highlighted locations of First Nation and Inuit communities. 
+                  </v-list-item>
+                  <v-list-item>
+                    2. <strong>Read</strong> about the shipping practices that risk whale health across Canada’s coasts. 
+                  </v-list-item>
+                  <v-list-item>
+                    3. <strong>Learn</strong> about the Indigenous traditional knowledge and collaborative efforts that work to protect whales in these areas. 
+                  </v-list-item>
+                  <v-list-item>
+                    4. <strong>Consider</strong> the connection to Indigenous culture that informs these practices.
+                  </v-list-item>
+                  <v-list-item>
+                    5. <strong>Explore</strong> the sources provided in each card as well as the ‘Learn More Here’ section to meaningfully engage with the Indigenous research and advocacy programs that work to reduce whale harm in shipping practices! 
+                  </v-list-item>
+
+                </v-card-text>
+                 </v-expansion-panel-text>
+                </v-expansion-panel>
+            <!--This creates an expansion pannel for the entire Module References.-->
+            <v-expansion-panel color="#EDF7BD">
+              <v-expansion-panel-title>
+                Module References
+              </v-expansion-panel-title>
+
+              <v-expansion-panel-text>
+                <v-list-item>
+                  Beluga whale stewardship and collaborative research practices among Indigenous peoples in the Arctic | Polar Research. (n.d.). https://polarresearch.net/index.php/polar/article/view/5522/14090#:~:text=Beluga%20whales%20(Delphinapterus%20leucas)%20are,nutritional%20roles%20in%20Arctic%20communities
+                </v-list-item>
+                
+                <v-list-item>
+                  Haggert, A. (2020, February 25). Inuit communities consulted in plans for low-impact Arctic shipping routes. Canadian Geographic. https://canadiangeographic.ca/articles/inuit-communities-consulted-in-plans-for-low-impact-arctic-shipping-routes/#:~:text=By%20Angelica%20Haggert,areas%20such%20as%20Walrus%20Island
+                </v-list-item>
+                <v-list-item>
+                  CBC. (2020, May 31). A humpback whale is swimming in the St. Lawrence River in Montreal. CBC.https://www.cbc.ca/news/canada/montreal/humpback-whale-st-lawrence-1.5591877
+                </v-list-item>
+
+                <v-list-item>
+                Chion, C. et al. (2017). Underwater acoustic impacts of shipping management measures: Results from a social-ecological model of boat and whale movements in the St. Lawrence River Estuary (Canada). Ecological Modelling, 354, 72–87. https://doi.org/10.1016/j.ecolmodel.2017.03.014
+                </v-list-item>
+
+                <v-list-item>
+                Coastal First Nations. (2025, October 19). Marine Response and Shipping Safety | Coastal First Nations. https://coastalfirstnations.ca/initiatives/marine-response-and-shipping-safety/#:~:text=Coastal%20Nations%20have%20also%20been,people%20that%20depend%20on%20them
+                </v-list-item>
+
+                <v-list-item>
+                Dawson, J. et al. (2019). Infusing Inuit and local knowledge into the Low Impact Shipping Corridors: An adaptation to increased shipping activity and climate change in Arctic Canada. Environmental Science & Policy, 105, 19–36. https://doi.org/10.1016/j.envsci.2019.11.013
+                </v-list-item>
+
+                <v-list-item>
+                 Government of Canada. (2025, October 6). Expanding the Enhanced Maritime Situational Awareness program. Transport Canada. https://tc.canada.ca/en/campaigns/protecting-our-coasts-oceans-protection-plan/stronger-partnerships-indigenous-coastal-communities/expanding-enhanced-maritime-situational-awareness-program
+                </v-list-item>
+
+                <v-list-item>
+                Giving whales the right of way over ships - WWF Arctic. (2025, January 24). WWF Arctic. https://www.arcticwwf.org/the-circle/stories/giving-whales-the-right-of-way-over-ships/
+                </v-list-item>
+
+                <v-list-item>
+                Hendricks, B et al. (2025). Quantifying vessel noise and acoustic habitat loss in marine soundscapes. Marine Pollution Bulletin, 219, 118150. https://doi.org/10.1016/j.marpolbul.2025.118150
+                </v-list-item>
+
+                <v-list-item>
+                Iravani, R., Biagi, M., Laforest, S., Lee, K., Isaacman, L., Chen, Z., & An, C. (2025). Protecting shorelines in Canadian Indigenous communities: Environmental challenges, policy interventions, and mitigation technologies. Marine Pollution Bulletin, 219, 118310. https://doi.org/10.1016/j.marpolbul.2025.118310
+                </v-list-item>
+
+                <v-list-item>
+                Keen, E., et al.  (2023). Ship-strike forecast and mitigation for whales in Gitga’at First Nation territory. Endangered Species Research, 51, 31–58. https://doi.org/10.3354/esr01244
+                </v-list-item>
+
+                <v-list-item>
+                The cultural and conservation significance of Anguniaqvia Niqiqyuam Marine Protected Area (MPA), North West Territories, Canada. The Cultural and Conservation Significance of Anguniaqvia niqiqyuam Marine Protected Area (MPA), North West Territories, Canada | Open Case Studies. (n.d.). https://cases.open.ubc.ca/the-cultural-and-conservation-significance-of-anguniaqvia-niqiqyuam-marine-protected-area-mpa-north-west-territories-canada/
+                </v-list-item>
+
+                <v-list-item>
+                Traditional waters, modern threats: The Gitga’at’s Fight for Humpbacks – Clear Seas. (2024, September 27). Clear Seas - Clear Seas. https://clearseas.org/insights/traditional-waters-modern-threats-the-gitgaats-fight-for-humpbacks/#:~:text=The%20data%20gathered%20from%20the,communication%2C%20feeding%2C%20and%20socialization.&text=The%20goal%20of%20the%20SWAG,Gitga%27at%20First%20Nation%27s%20territory.&text=Although%20the%20population%20of%20humpback,threatened%20by%20commercial%20shipping%20activity.&text=Speed%20reduction%20measures%20and%20transit,vessel%20strikes%20within%20the%20region.&text=Additional%20partnerships%20with%20local%20nations,Knowledge%20in%20marine%20research%20practices.
+                </v-list-item>
+
+                <v-list-item>
+                Malahat Nation. (2019). WRITTEN SUBMISSION TO THE REVIEW PANEL. https://iaac-aeic.gc.ca/050/documents/p80054/129374E.pdf
+                </v-list-item>
+
+                <v-list-item>
+                Mitigating Underwater Noise with Indigenous Knowledge – Clear Seas. (2025, January 21). Clear Seas - Clear Seas. https://clearseas.org/insights/mitigating-underwater-noise-with-indigenous-knowledge/#:~:text=We%20can%20look%20to%20the,vessels%20in%20their%20local%20waters
+                </v-list-item>
+
+                <v-list-item>
+                Mohawk Council of Kahnawà:ke. (2026, March 13). Public Documents - Kahnawà:ke. Kahnawà:Ke. https://kahnawake.com/public-documents/#policies
+                </v-list-item>
+
+                <v-list-item>
+                Oakley, L. (2025, September 19). Statement from the Gitga’at First Nation. Gitgaat First Nation. https://www.gitgaatnation.ca/post/statement-from-the-gitga-at-first-nation#:~:text=This%20tragedy%20is%20a%20stark,whale%20populations%20in%20the%20region
+                </v-list-item>
+
+                <v-list-item>
+                Polar bears and narwhal: wildlife viewing in Nunavut. (n.d.). Destination Canada. https://travel.destinationcanada.com/en-us/things-to-do/polar-bears-and-narwhal-wildlife-viewing-nunavut. 
+                </v-list-item>
+              </v-expansion-panel-text>
+            </v-expansion-panel>
+
+        
+          </v-expansion-panels>
+
+        </v-container>
+
+      </v-main>
+    </v-app>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
